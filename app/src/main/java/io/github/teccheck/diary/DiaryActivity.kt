@@ -4,7 +4,9 @@ import io.github.teccheck.diary.markdown.HidePunctuationSpan
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.SharedPreferencesCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import io.github.teccheck.diary.markdown.BlockQuoteEditHandler
 import io.github.teccheck.diary.markdown.CodeEditHandler
@@ -52,17 +54,26 @@ class DiaryActivity : DiaryBaseActivity() {
         textInput.setText(diaryStorage.getCurrentDiaryText())
         textInput.doOnTextChanged { text, _, _, _ -> diaryStorage.setCurrentDiaryText(text.toString()) }
 
+        setupMarkdown()
+    }
+
+    private fun setupMarkdown() {
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+
         markdown = Markwon.builder(this).usePlugin(SoftBreakAddsNewLinePlugin.create()).build()
-        editor = MarkwonEditor.builder(markdown)
-            .punctuationSpan(HidePunctuationSpan::class.java) { HidePunctuationSpan() }
+        val builder = MarkwonEditor.builder(markdown)
             .useEditHandler(EmphasisEditHandler())
             .useEditHandler(StrongEmphasisEditHandler())
             .useEditHandler(StrikethroughEditHandler())
             .useEditHandler(CodeEditHandler())
             .useEditHandler(BlockQuoteEditHandler())
             .useEditHandler(HeadingEditHandler())
-            .build()
 
+        if (!sp.getBoolean("show_markdown_punctuation", true)) {
+            builder.punctuationSpan(HidePunctuationSpan::class.java) { HidePunctuationSpan() }
+        }
+
+        editor = builder.build()
         textInput.addTextChangedListener(MarkwonEditorTextWatcher.withProcess(editor))
         editor.process(textInput.text!!)
     }

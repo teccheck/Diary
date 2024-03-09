@@ -1,5 +1,14 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/preferences_editor">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="show_markdown_punctuation"
+            app:summary="@string/preference_show_markdown_punctuation_desc"
+            app:title="@string/preference_show_markdown_punctuation" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/preferences_import_export">
 
         <PreferenceScreen

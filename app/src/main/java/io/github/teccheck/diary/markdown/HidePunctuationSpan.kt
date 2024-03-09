@@ -13,22 +13,11 @@ class HidePunctuationSpan : ReplacementSpan() {
     override fun getSize(
         paint: Paint, text: CharSequence, start: Int, end: Int, fm: Paint.FontMetricsInt?
     ): Int {
-        // last space (which is swallowed until next non-space character appears)
-        // block quote
-        // code tick
-
-        //      Debug.i("text: '%s', %d-%d (%d)", text.subSequence(start, end), start, end, text.length());
         if (end == text.length) {
-            // TODO: find first non-space character (not just first one because commonmark allows
-            //  arbitrary (0-3) white spaces before content starts
-
-            //  TODO: if all white space - render?
             val c = text[start]
-            if (// TODO: not thematic break
-            // `*` is fine but only for a list
-                '#' == c || '>' == c || '-' == c || '+' == c || isBulletList(
-                    text, c, start, end
-                ) || Character.isDigit(c) // assuming ordered list (replacement should only happen for ordered lists)
+            if ('#' == c || '>' == c || '-' == c || '+' == c ||
+                isBulletList(text, c, start, end)
+                || Character.isDigit(c) // assuming ordered list (replacement should only happen for ordered lists)
                 || Character.isWhitespace(c)
             ) {
                 return (paint.measureText(text, start, end) + 0.5f).toInt()
@@ -67,10 +56,7 @@ class HidePunctuationSpan : ReplacementSpan() {
     }
 
     companion object {
-        private fun isBulletList(
-            text: CharSequence, firstChar: Char, start: Int, end: Int
-        ): Boolean {
-            return ('*' == firstChar && (end - start == 1 || Character.isWhitespace(text[start + 1])))
-        }
+        private fun isBulletList(text: CharSequence, firstChar: Char, start: Int, end: Int) =
+            '*' == firstChar && (end - start == 1 || Character.isWhitespace(text[start + 1]))
     }
 }

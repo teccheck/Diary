@@ -9,6 +9,10 @@
     <string name="input_hint">Start typing your thoughts…</string>
     <string name="source_code">Source code</string>
 
+    <string name="preferences_editor">Editor Preferences</string>
+    <string name="preference_show_markdown_punctuation">Show Markdown Punctuation</string>
+    <string name="preference_show_markdown_punctuation_desc">Requires a restart of the app</string>
+
     <string name="preferences_import_export">Import/Export (Under construction)</string>
     <string name="preference_import">Import diary</string>
     <string name="preference_export">Export diary</string>
