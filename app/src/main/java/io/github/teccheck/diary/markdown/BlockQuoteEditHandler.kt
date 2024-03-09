@@ -30,7 +30,7 @@ class BlockQuoteEditHandler : EditHandler<BlockQuoteSpan> {
         spanStart: Int,
         spanTextLength: Int
     ) {
-        // todo: here we should actually find a proper ending of a block quote...
+        // Todo: here we should actually find a proper ending of a block quote...
         editable.setSpan(
             persistedSpans.get(BlockQuoteSpan::class.java),
             spanStart,

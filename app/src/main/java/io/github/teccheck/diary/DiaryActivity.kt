@@ -58,8 +58,8 @@ class DiaryActivity : DiaryBaseActivity() {
             .useEditHandler(EmphasisEditHandler())
             .useEditHandler(StrongEmphasisEditHandler())
             .useEditHandler(StrikethroughEditHandler())
-            .useEditHandler( CodeEditHandler())
-            .useEditHandler( BlockQuoteEditHandler())
+            .useEditHandler(CodeEditHandler())
+            .useEditHandler(BlockQuoteEditHandler())
             .useEditHandler(HeadingEditHandler())
             .build()
 
