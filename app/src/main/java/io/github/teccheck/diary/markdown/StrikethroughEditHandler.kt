@@ -1,3 +1,7 @@
+/*
+Adapted from
+https://github.com/noties/Markwon/blob/master/app-sample/src/main/java/io/noties/markwon/app/samples/editor/shared/StrikethroughEditHandler.java
+ */
 package io.github.teccheck.diary.markdown
 
 import android.text.Editable
@@ -9,9 +13,7 @@ import io.noties.markwon.editor.PersistedSpans
 
 class StrikethroughEditHandler : AbstractEditHandler<StrikethroughSpan>() {
     override fun configurePersistedSpans(builder: PersistedSpans.Builder) {
-        builder.persistSpan(
-            StrikethroughSpan::class.java
-        ) { StrikethroughSpan() }
+        builder.persistSpan(StrikethroughSpan::class.java) { StrikethroughSpan() }
     }
 
     override fun handleMarkdownSpan(
@@ -33,7 +35,5 @@ class StrikethroughEditHandler : AbstractEditHandler<StrikethroughSpan>() {
         }
     }
 
-    override fun markdownSpanType(): Class<StrikethroughSpan> {
-        return StrikethroughSpan::class.java
-    }
+    override fun markdownSpanType() = StrikethroughSpan::class.java
 }

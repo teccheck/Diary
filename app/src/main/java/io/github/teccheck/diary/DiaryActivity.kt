@@ -1,11 +1,14 @@
 package io.github.teccheck.diary
 
-import HidePunctuationSpan
+import io.github.teccheck.diary.markdown.HidePunctuationSpan
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.doOnTextChanged
 import com.google.android.material.appbar.MaterialToolbar
+import io.github.teccheck.diary.markdown.BlockQuoteEditHandler
+import io.github.teccheck.diary.markdown.CodeEditHandler
+import io.github.teccheck.diary.markdown.HeadingEditHandler
 import io.github.teccheck.diary.markdown.StrikethroughEditHandler
 import io.noties.markwon.Markwon
 import io.noties.markwon.SoftBreakAddsNewLinePlugin
@@ -55,6 +58,9 @@ class DiaryActivity : DiaryBaseActivity() {
             .useEditHandler(EmphasisEditHandler())
             .useEditHandler(StrongEmphasisEditHandler())
             .useEditHandler(StrikethroughEditHandler())
+            .useEditHandler( CodeEditHandler())
+            .useEditHandler( BlockQuoteEditHandler())
+            .useEditHandler(HeadingEditHandler())
             .build()
 
         textInput.addTextChangedListener(MarkwonEditorTextWatcher.withProcess(editor))

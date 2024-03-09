@@ -1,3 +1,10 @@
+/*
+This file was adapted from
+https://github.com/noties/Markwon/blob/master/app-sample/src/main/java/io/noties/markwon/app/samples/editor/WYSIWYGEditorSample.java
+ */
+
+package io.github.teccheck.diary.markdown
+
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.text.style.ReplacementSpan
