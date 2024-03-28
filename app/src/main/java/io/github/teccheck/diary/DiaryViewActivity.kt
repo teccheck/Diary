@@ -3,6 +3,8 @@ package io.github.teccheck.diary
 import android.os.Bundle
 import androidx.appcompat.widget.AppCompatTextView
 import com.google.android.material.appbar.MaterialToolbar
+import io.noties.markwon.Markwon
+import io.noties.markwon.SoftBreakAddsNewLinePlugin
 
 class DiaryViewActivity : DiaryBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,10 @@ class DiaryViewActivity : DiaryBaseActivity() {
 
         filename?.let {
             toolbar.title = DiaryUtils.getLocalizedDateString(it)
-            textView.text = diaryStorage.readDiaryEntry(it)
+            val markdown = Markwon.builder(this)
+                .usePlugin(SoftBreakAddsNewLinePlugin.create())
+                .build()
+            markdown.setMarkdown(textView, diaryStorage.readDiaryEntry(it))
         }
     }
 
