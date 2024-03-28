@@ -19,5 +19,9 @@
 
     <string name="not_yet_implemented">Not yet implemented</string>
 
+    <string name="export_done">Export done</string>
+    <string name="import_done">Import done</string>
+
+    <string name="export_file_name" translatable="false">diary_backup.zip</string>
     <string name="source_code_url" translatable="false">https://github.com/TecCheck/Diary</string>
 </resources>

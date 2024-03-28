@@ -14,17 +14,15 @@ object DiaryUtils {
     }
 
     fun getLocalizedDateString(filename: String): String {
-        val split = filename.split(".")
-        Log.d(TAG, split.toString())
-        if (split.isEmpty())
-            return filename
+        val dot = filename.lastIndexOf('.')
+        val name = if (dot < 0) filename else filename.substring(0, dot)
 
         val parseDateFormat = getDateFormat()
         parseDateFormat.isLenient = false
         val localDateFormat = DateFormat.getDateInstance()
 
         try {
-            val date = parseDateFormat.parse(split.first()) ?: return filename
+            val date = parseDateFormat.parse(name) ?: return filename
             Log.d(TAG, date.toString())
             return localDateFormat.format(date)
         } catch (e: ParseException) {
