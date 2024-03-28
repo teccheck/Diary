@@ -24,12 +24,14 @@ class DiaryActivity : DiaryBaseActivity() {
     private lateinit var textInput: AppCompatEditText
     private lateinit var markdown: Markwon
     private lateinit var editor: MarkwonEditor
+    private lateinit var toolbar: MaterialToolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diary)
 
-        findViewById<MaterialToolbar>(R.id.toolbar).setOnMenuItemClickListener { menuItem ->
+        toolbar = findViewById(R.id.toolbar)
+        toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_diary_list -> {
                     startActivity(Intent(this, DiaryListActivity::class.java))
@@ -57,6 +59,11 @@ class DiaryActivity : DiaryBaseActivity() {
         setupMarkdown()
     }
 
+    override fun onResume() {
+        super.onResume()
+        setupTitle()
+    }
+
     private fun setupMarkdown() {
         val sp = PreferenceManager.getDefaultSharedPreferences(this)
 
@@ -76,6 +83,16 @@ class DiaryActivity : DiaryBaseActivity() {
         editor = builder.build()
         textInput.addTextChangedListener(MarkwonEditorTextWatcher.withProcess(editor))
         editor.process(textInput.text!!)
+    }
+
+    private fun setupTitle() {
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        var title = sp.getString("app_title", "")
+
+        if (title.isNullOrEmpty()) title = getString(R.string.app_name)
+
+        toolbar.setTitle(title)
+        setTitle(title)
     }
 
     override fun onPause() {

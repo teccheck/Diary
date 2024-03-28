@@ -1,6 +1,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory android:title="@string/preferences_app">
+        <EditTextPreference
+            app:defaultValue="@string/app_name"
+            app:key="app_title"
+            app:singleLineTitle="true"
+            app:title="@string/preference_app_title"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/preferences_editor">
         <SwitchPreferenceCompat
             app:defaultValue="true"

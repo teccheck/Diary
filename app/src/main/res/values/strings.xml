@@ -9,6 +9,9 @@
     <string name="input_hint">Start typing your thoughts…</string>
     <string name="source_code">Source code</string>
 
+    <string name="preferences_app">App Preferences</string>
+    <string name="preference_app_title">App Title</string>
+
     <string name="preferences_editor">Editor Preferences</string>
     <string name="preference_show_markdown_punctuation">Show Markdown Punctuation</string>
     <string name="preference_show_markdown_punctuation_desc">Requires a restart of the app</string>

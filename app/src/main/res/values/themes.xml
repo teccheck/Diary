@@ -23,6 +23,7 @@
 
     <style name="Style.Diary.Material2.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
         <item name="elevation">0dp</item>
+        <item name="textFillColor"></item>
     </style>
 
     <style name="Style.Diary.Material2.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Surface" />
