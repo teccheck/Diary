@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'io.github.teccheck.diary'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "io.github.teccheck.diary"
-        minSdk 24
-        targetSdk 34
+        minSdk 23
+        targetSdk 35
         versionCode 3
         versionName "1.2"
 

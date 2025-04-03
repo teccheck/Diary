@@ -3,6 +3,7 @@
     <style name="Theme.Diary.Material2" parent="Theme.Diary.Material2.Base">
         <item name="android:colorBackground">@color/theme_background_dark</item>
         <item name="android:statusBarColor">@color/theme_background_dark</item>
+        <item name="colorSurface">@color/theme_background_dark</item>
     </style>
 
     <style name="Style.Diary.Material2.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">

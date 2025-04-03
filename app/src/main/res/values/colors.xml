@@ -8,7 +8,8 @@
     <color name="theme_on_secondary">#ffffff</color>
 
     <color name="theme_background_dark">#202124</color>
-    <color name="nav_bar_color">#52000000</color>
+    <color name="nav_bar_color_light">#e6ffffff</color>
+    <color name="nav_bar_color_dark">#80202124</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
