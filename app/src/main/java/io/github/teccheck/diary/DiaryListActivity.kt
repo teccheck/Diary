@@ -8,18 +8,27 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
+import io.noties.markwon.Markwon
+import io.noties.markwon.SoftBreakAddsNewLinePlugin
+import io.noties.markwon.movement.MovementMethodPlugin
 
 class DiaryListActivity : DiaryBaseActivity() {
     private lateinit var recyclerView: RecyclerView
 
+    private lateinit var markdown: Markwon
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diary_list)
+
+        markdown = Markwon.builder(this)
+            .usePlugin(SoftBreakAddsNewLinePlugin.create())
+            .usePlugin(MovementMethodPlugin.none())
+            .build()
 
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         toolbar.setNavigationOnClickListener { finish() }
@@ -51,6 +60,7 @@ class DiaryListActivity : DiaryBaseActivity() {
         RecyclerView.Adapter<DiaryEntryRecyclerAdapter.ViewHolder>() {
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val textView: TextView = itemView.findViewById(R.id.text_view)
+            val previewText: TextView = itemView.findViewById(R.id.text_preview)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -65,6 +75,7 @@ class DiaryListActivity : DiaryBaseActivity() {
             val filename = filenames[position]
 
             holder.textView.text = DiaryUtils.getLocalizedDateString(filename)
+            markdown.setMarkdown(holder.previewText, diaryStorage.readDiaryEntry(filename))
             holder.itemView.setOnClickListener { diaryEntryClickListener.onClick(filename) }
         }
     }
